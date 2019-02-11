@@ -44,4 +44,19 @@ str.raw.toString()[0]
 The first char would be blackslash.  
 
 description: works on unicodes too  
-What is different is that `'\u{1F600}'` unicode character doesn't need any backtip to wrap it then can interpret it.
+What is different is that `'\u{1F600}'` unicode character doesn't need any backtip to wrap it then can interpret it.  
+
+## Object - is
+description: coercion, as in `==` and `===`, does NOT apply
+```js
+Object.is(1, 1)  // true
+Object.is(1, '1')   // false
+let coerced = +0 === -0;  // true
+Object.is(+0, -0)   // false
+NaN == NaN   // false
+Object.is(NaN, NaN)  // true
+Object.is(NaN, 0/0)   // true
+Object.is({}, {})   // false
+```  
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+According to the reference, `Object.is` won't make coercion on the both side value just as `==` and `===`!
